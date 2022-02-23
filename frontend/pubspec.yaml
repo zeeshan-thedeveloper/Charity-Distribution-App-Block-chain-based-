@@ -61,6 +61,14 @@ flutter:
     - assets/register-cover.jpg
     - assets/register-cover-photo.jfif
     - assets/user-cover.jfif
+    - assets/profile.png
+    - assets/request-money.png
+    - assets/sign-out.png
+    - assets/transaction.png
+    - assets/amount.png
+    - assets/transfer.png
+    - assets/post-request.png
+    - assets/distribute.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

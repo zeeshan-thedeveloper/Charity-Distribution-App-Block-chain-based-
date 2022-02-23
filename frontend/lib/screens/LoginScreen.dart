@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/screens/UserHomeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -65,7 +66,13 @@ class _LoginScreen extends State<LoginScreen> {
                                     children: [
                                       Expanded(
                                           child: OutlinedButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      UserHomeScreen()));
+                                        },
                                         child: Text("Login"),
                                       ))
                                     ],
