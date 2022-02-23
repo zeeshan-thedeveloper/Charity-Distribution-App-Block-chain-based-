@@ -13,6 +13,7 @@ class _LoginScreen extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: Text("Login"),
           leading: IconButton(
@@ -22,44 +23,55 @@ class _LoginScreen extends State<LoginScreen> {
             icon: Icon(Icons.arrow_back),
           ),
         ),
-        body: Center(
-            child: Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(children: [
-                        Expanded(
-                            child: TextFormField(
-                                controller: emailController,
-                                decoration: InputDecoration(
-                                  icon: Icon(Icons.email),
-                                  labelText: 'Email',
-                                ))),
-                      ]),
-                      Row(
-                        children: [
-                          Expanded(
-                              child: TextFormField(
-                                  controller: passwordController,
-                                  obscureText: true,
-                                  decoration: InputDecoration(
-                                    icon: Icon(Icons.lock),
-                                    labelText: 'Password',
-                                  ))),
-                        ],
-                      ),
-                      Padding(
-                          padding: EdgeInsets.only(top: 20),
-                          child: Row(
+        body: SingleChildScrollView(
+          child: Center(
+              child: Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset("assets/register-cover.jpg",
+                            fit: BoxFit.cover),
+                        Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Expanded(
-                                  child: OutlinedButton(
-                                onPressed: () {},
-                                child: Text("Login"),
-                              ))
-                            ],
-                          ))
-                    ]))));
+                              SizedBox(
+                                height: 40,
+                              ),
+                              Row(children: [
+                                Expanded(
+                                    child: TextFormField(
+                                        controller: emailController,
+                                        decoration: InputDecoration(
+                                          icon: Icon(Icons.email),
+                                          labelText: 'Email',
+                                        ))),
+                              ]),
+                              Row(
+                                children: [
+                                  Expanded(
+                                      child: TextFormField(
+                                          controller: passwordController,
+                                          obscureText: true,
+                                          decoration: InputDecoration(
+                                            icon: Icon(Icons.lock),
+                                            labelText: 'Password',
+                                          ))),
+                                ],
+                              ),
+                              Padding(
+                                  padding: EdgeInsets.only(top: 20),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          child: OutlinedButton(
+                                        onPressed: () {},
+                                        child: Text("Login"),
+                                      ))
+                                    ],
+                                  ))
+                            ]),
+                      ]))),
+        ));
   }
 }

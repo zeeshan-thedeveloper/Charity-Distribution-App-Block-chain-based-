@@ -16,6 +16,7 @@ class _UserRegistrationScreen extends State<UserRegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
             title: Text("User"),
             leading: IconButton(
@@ -23,74 +24,88 @@ class _UserRegistrationScreen extends State<UserRegistrationScreen> {
                   Navigator.pop(context);
                 },
                 icon: Icon(Icons.arrow_back))),
-        body: Center(
-            child: Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(children: [
-                        Expanded(
-                            child: TextFormField(
-                                controller: firstNameControler,
-                                decoration: InputDecoration(
-                                  icon: Icon(Icons.perm_identity),
-                                  labelText: 'First Name',
-                                ))),
-                      ]),
-                      Row(children: [
-                        Expanded(
-                            child: TextFormField(
-                                controller: lastNameControler,
-                                decoration: InputDecoration(
-                                  icon: Icon(Icons.perm_identity),
-                                  labelText: 'Last Name',
-                                ))),
-                      ]),
-                      Row(children: [
-                        Expanded(
-                            child: TextFormField(
-                                controller: emailControler,
-                                decoration: InputDecoration(
-                                  icon: Icon(Icons.email),
-                                  labelText: 'Email',
-                                ))),
-                      ]),
-                      Row(
-                        children: [
-                          Expanded(
-                              child: TextFormField(
-                                  obscureText: true,
-                                  controller: passwordControler,
-                                  decoration: InputDecoration(
-                                    suffixIcon: IconButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            if (seeOrHide ==
-                                                Icons.remove_red_eye) {
-                                              seeOrHide = Icons.hide_image;
-                                            } else {
-                                              seeOrHide = Icons.remove_red_eye;
-                                            }
-                                          });
-                                        },
-                                        icon: Icon(seeOrHide)),
-                                    icon: Icon(Icons.lock),
-                                    labelText: 'Password',
-                                  ))),
-                        ],
-                      ),
-                      Padding(
-                          padding: EdgeInsets.only(top: 20),
-                          child: Row(
-                            children: [
+        body: SingleChildScrollView(
+          child: Center(
+              child: Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset('assets/user-cover.jfif',
+                            fit: BoxFit.cover),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 40,
+                            ),
+                            Row(children: [
                               Expanded(
-                                  child: OutlinedButton(
-                                onPressed: () {},
-                                child: Text("Create Account"),
-                              ))
-                            ],
-                          ))
-                    ]))));
+                                  child: TextFormField(
+                                      controller: firstNameControler,
+                                      decoration: InputDecoration(
+                                        icon: Icon(Icons.perm_identity),
+                                        labelText: 'First Name',
+                                      ))),
+                            ]),
+                            Row(children: [
+                              Expanded(
+                                  child: TextFormField(
+                                      controller: lastNameControler,
+                                      decoration: InputDecoration(
+                                        icon: Icon(Icons.perm_identity),
+                                        labelText: 'Last Name',
+                                      ))),
+                            ]),
+                            Row(children: [
+                              Expanded(
+                                  child: TextFormField(
+                                      controller: emailControler,
+                                      decoration: InputDecoration(
+                                        icon: Icon(Icons.email),
+                                        labelText: 'Email',
+                                      ))),
+                            ]),
+                            Row(
+                              children: [
+                                Expanded(
+                                    child: TextFormField(
+                                        obscureText: true,
+                                        controller: passwordControler,
+                                        decoration: InputDecoration(
+                                          suffixIcon: IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (seeOrHide ==
+                                                      Icons.remove_red_eye) {
+                                                    seeOrHide =
+                                                        Icons.hide_image;
+                                                  } else {
+                                                    seeOrHide =
+                                                        Icons.remove_red_eye;
+                                                  }
+                                                });
+                                              },
+                                              icon: Icon(seeOrHide)),
+                                          icon: Icon(Icons.lock),
+                                          labelText: 'Password',
+                                        ))),
+                              ],
+                            ),
+                            Padding(
+                                padding: EdgeInsets.only(top: 20),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                        child: OutlinedButton(
+                                      onPressed: () {},
+                                      child: Text("Create Account"),
+                                    ))
+                                  ],
+                                ))
+                          ],
+                        )
+                      ]))),
+        ));
   }
 }

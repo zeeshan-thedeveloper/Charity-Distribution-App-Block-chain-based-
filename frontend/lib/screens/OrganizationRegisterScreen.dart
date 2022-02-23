@@ -22,6 +22,7 @@ class _OrganizationRegistrationScreen
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
             title: Text("Organization"),
             leading: IconButton(
@@ -29,106 +30,113 @@ class _OrganizationRegistrationScreen
                   Navigator.pop(context);
                 },
                 icon: Icon(Icons.arrow_back))),
-        body: Center(
-            child: Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(children: [
-                        Expanded(
-                            child: TextFormField(
-                                controller: nameController,
-                                decoration: InputDecoration(
-                                  icon: Icon(Icons.perm_identity),
-                                  labelText: 'Name',
-                                ))),
-                      ]),
-                      Row(
-                        children: [
+        body: SingleChildScrollView(
+          child: Center(
+              child: Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/register-cover-photo.jfif',
+                            fit: BoxFit.cover),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Row(children: [
                           Expanded(
                               child: TextFormField(
-                                  controller: passwordController,
-                                  obscureText: true,
+                                  controller: nameController,
                                   decoration: InputDecoration(
-                                    icon: Icon(Icons.lock),
-                                    labelText: 'Password',
+                                    icon: Icon(Icons.perm_identity),
+                                    labelText: 'Name',
                                   ))),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: DropdownButton(
-                              icon: Icon(Icons.location_city),
-                              value: selectedCity,
-                              items: cities.map<DropdownMenuItem<String>>(
+                        ]),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: TextFormField(
+                                    controller: passwordController,
+                                    obscureText: true,
+                                    decoration: InputDecoration(
+                                      icon: Icon(Icons.lock),
+                                      labelText: 'Password',
+                                    ))),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: DropdownButton(
+                                icon: Icon(Icons.location_city),
+                                value: selectedCity,
+                                items: cities.map<DropdownMenuItem<String>>(
+                                    (String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                                onChanged: (String? newCity) {
+                                  setState(() {
+                                    selectedCity = newCity!;
+                                  });
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: DropdownButton(
+                              icon: Icon(Icons.map),
+                              value: selecteCountry,
+                              items: countries.map<DropdownMenuItem<String>>(
                                   (String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: Text(value),
                                 );
                               }).toList(),
-                              onChanged: (String? newCity) {
+                              onChanged: (String? newCountry) {
                                 setState(() {
-                                  selectedCity = newCity!;
+                                  selecteCountry = newCountry!;
                                 });
                               },
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                              child: DropdownButton(
-                            icon: Icon(Icons.map),
-                            value: selecteCountry,
-                            items: countries
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            onChanged: (String? newCountry) {
-                              setState(() {
-                                selecteCountry = newCountry!;
-                              });
-                            },
-                          )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Checkbox(
-                              value: isTermsAccepted,
-                              onChanged: (bool? val) {
-                                setState(() {
-                                  isTermsAccepted = val!;
-                                });
-                              }),
+                            )),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Checkbox(
+                                value: isTermsAccepted,
+                                onChanged: (bool? val) {
+                                  setState(() {
+                                    isTermsAccepted = val!;
+                                  });
+                                }),
 
-                          Text(
-                            'Accept Terms and condition',
-                            style: TextStyle(fontSize: 17.0),
-                          ), //Text
-                        ], //<Widget>[]
-                      ),
-                      Padding(
-                          padding: EdgeInsets.only(top: 20),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                  child: OutlinedButton(
-                                onPressed: () {},
-                                child: Text("Create Account"),
-                              ))
-                            ],
-                          ))
-                    ]))));
+                            Text(
+                              'Accept Terms and condition',
+                              style: TextStyle(fontSize: 17.0),
+                            ), //Text
+                          ], //<Widget>[]
+                        ),
+                        Padding(
+                            padding: EdgeInsets.only(top: 20),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    child: OutlinedButton(
+                                  onPressed: () {},
+                                  child: Text("Create Account"),
+                                ))
+                              ],
+                            ))
+                      ]))),
+        ));
   }
 }
