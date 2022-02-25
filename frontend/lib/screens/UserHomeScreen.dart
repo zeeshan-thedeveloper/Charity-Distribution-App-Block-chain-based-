@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/Components/optionCard.dart';
 import 'package:frontend/Components/sideDrawer.dart';
+import 'package:frontend/screens/ListOfOrganizationsScreen.dart';
+import 'package:frontend/screens/PostRequestScreen.dart';
 import 'package:frontend/screens/UserTransactionsScreen.dart';
+import 'package:frontend/screens/ViewBalanceScreen.dart';
 
 class UserHomeScreen extends StatefulWidget {
   @override
@@ -13,7 +16,13 @@ class _UserHomeScreen extends State<UserHomeScreen> {
   _UserHomeScreen() {
     drawerOptions = [
       {"name": "Profile", "image": "profile.png", "onPressed": () {}},
-      {"name": "Post request", "image": "post-request.png", "onPressed": () {}},
+      {
+        "name": "Post request",
+        "image": "post-request.png",
+        "onPressed": () {
+          postRequestPreessedHandler();
+        }
+      },
       {
         "name": "Transaction history",
         "image": "transaction.png",
@@ -21,8 +30,20 @@ class _UserHomeScreen extends State<UserHomeScreen> {
           transactionPressedHandler();
         }
       },
-      {"name": "Donate", "image": "transfer.png", "onPressed": () {}},
-      {"name": "Balance", "image": "amount.png", "onPressed": () {}},
+      {
+        "name": "Donate",
+        "image": "transfer.png",
+        "onPressed": () {
+          donatePreessedHandler();
+        }
+      },
+      {
+        "name": "Balance",
+        "image": "amount.png",
+        "onPressed": () {
+          balancePreessedHandler();
+        }
+      },
       {"name": "Signout", "image": "sign-out.png", "onPressed": () {}}
     ];
   }
@@ -82,5 +103,20 @@ class _UserHomeScreen extends State<UserHomeScreen> {
   void transactionPressedHandler() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => UserTransactionsScreen()));
+  }
+
+  void donatePreessedHandler() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ListOfOrganizationsScreen()));
+  }
+
+  void postRequestPreessedHandler() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => PostRequestScreen()));
+  }
+
+  void balancePreessedHandler() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => ViewBalanceScreen()));
   }
 }

@@ -6,13 +6,14 @@ class UserRegistrationScreen extends StatefulWidget {
 }
 
 class _UserRegistrationScreen extends State<UserRegistrationScreen> {
-  IconData seeOrHide = Icons.hide_image;
+  IconData seeOrHidePassword = Icons.visibility_off;
+  IconData seeOrHidePin = Icons.visibility_off;
   // controller
   TextEditingController emailControler = new TextEditingController();
   TextEditingController firstNameControler = new TextEditingController();
   TextEditingController lastNameControler = new TextEditingController();
   TextEditingController passwordControler = new TextEditingController();
-
+  TextEditingController pinControler = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,24 +72,51 @@ class _UserRegistrationScreen extends State<UserRegistrationScreen> {
                                 Expanded(
                                     child: TextFormField(
                                         obscureText: true,
+                                        maxLength: 6,
+                                        controller: pinControler,
+                                        decoration: InputDecoration(
+                                          suffixIcon: IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (seeOrHidePassword ==
+                                                      Icons.remove_red_eye) {
+                                                    seeOrHidePassword =
+                                                        Icons.visibility_off;
+                                                  } else {
+                                                    seeOrHidePassword =
+                                                        Icons.remove_red_eye;
+                                                  }
+                                                });
+                                              },
+                                              icon: Icon(seeOrHidePassword)),
+                                          icon: Icon(Icons.lock),
+                                          labelText: 'Password',
+                                        ))),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                    child: TextFormField(
+                                        obscureText: true,
                                         controller: passwordControler,
                                         decoration: InputDecoration(
                                           suffixIcon: IconButton(
                                               onPressed: () {
                                                 setState(() {
-                                                  if (seeOrHide ==
+                                                  if (seeOrHidePin ==
                                                       Icons.remove_red_eye) {
-                                                    seeOrHide =
-                                                        Icons.hide_image;
+                                                    seeOrHidePin =
+                                                        Icons.visibility_off;
                                                   } else {
-                                                    seeOrHide =
+                                                    seeOrHidePin =
                                                         Icons.remove_red_eye;
                                                   }
                                                 });
                                               },
-                                              icon: Icon(seeOrHide)),
+                                              icon: Icon(seeOrHidePin)),
                                           icon: Icon(Icons.lock),
-                                          labelText: 'Password',
+                                          labelText: 'Pin',
                                         ))),
                               ],
                             ),
