@@ -1,0 +1,347 @@
+{
+	"id": "02ff2c49-0982-80ce-fd75-6fc5db108394",
+	"name": "Dapp-Endpoints",
+	"description": "",
+	"order": [
+		"b8fbc047-2d0c-ce3f-eb05-161f3dd64deb",
+		"148abf7b-4cb2-8221-5d12-ac46cec9cc09",
+		"88b5db74-0516-7664-ce55-9e02148c6590",
+		"b1f338d4-060a-be21-6a6e-abdff7460481",
+		"90f3ada2-9d15-cfd1-fc8c-6bf27205c3be",
+		"5fa04e60-9020-d1be-d904-dd9505eb0414",
+		"56bb20a1-6336-6f25-7e95-04ab7cb96ffc",
+		"062cc321-02f5-0d1a-ef3f-7cfc0b2cd2d4",
+		"2b8aef41-0c74-16bd-1a0f-63727aba5215",
+		"56ca022a-9f66-e097-efd8-161d2123f9f0",
+		"393800f1-decf-bc89-e519-f37070a285e1"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1645523053912,
+	"owner": "19680636",
+	"public": false,
+	"requests": [
+		{
+			"id": "062cc321-02f5-0d1a-ef3f-7cfc0b2cd2d4",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4000/TransactionsEndpoints/getPendingTransactionListByAccountAddress",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1645899536114,
+			"name": "getPendingTransactionListByAccountAddress",
+			"description": "",
+			"collectionId": "02ff2c49-0982-80ce-fd75-6fc5db108394",
+			"responses": [],
+			"rawModeData": "{\n\t\"targetAccountAddress\":\"0x0bD89CaA996637464ae769AA59753A4C7f50eA63\"\n}"
+		},
+		{
+			"id": "148abf7b-4cb2-8221-5d12-ac46cec9cc09",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4000/AccountEndpoints/createAccount",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1645817548356,
+			"name": "Creating Individual Acccount",
+			"description": "",
+			"collectionId": "02ff2c49-0982-80ce-fd75-6fc5db108394",
+			"responses": [],
+			"rawModeData": "{\n\t\t  \"email\":\"zeeshanahmedd0010@gmail.com\",\n          \"phoneNumber\":\"+923053212339\",\n          \"password\":\"123456\",\n          \"pin\":\"1234\",\n          \"emailVerified\": false,\n          \"displayName\":\"Zeeshan\",\n          \"address\":\"\",\n          \"onlineStatus\":null,\n          \"photoUrl\":\"https://avatars.githubusercontent.com/u/66442918?s=400&u=d132ce9df59451343444655464cb44ed8339ab54&v=4\",\n          \"disabled\": false,\n          \"accountType\":\"Individual\",\n          \"firstName\":\"Zeeshan\",\n          \"lastName\":\"Ahmed\",\n          \"description\":null\n}"
+		},
+		{
+			"id": "2b8aef41-0c74-16bd-1a0f-63727aba5215",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4000/ContractEndpoints/deployContract",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1645900002786,
+			"name": "deployContract",
+			"description": "If you get status code as 500 then that issue show that provided account addess is invalid or does not exists in blockchain.",
+			"collectionId": "02ff2c49-0982-80ce-fd75-6fc5db108394",
+			"responses": [],
+			"rawModeData": "{\n\t\"deployingAccountAddress\":\"0x0bD89CaA996637464ae769AA59753A4C7f50eA63\",\n\t\"deployingAccountPin\":\"1234\",\n\t\"userUid\":\"M8WMowW13geTRTnICQIKTm20A4m2\"\n}"
+		},
+		{
+			"id": "393800f1-decf-bc89-e519-f37070a285e1",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4000/ContractEndpoints/getDataFromBlockchain",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1645897539893,
+			"name": "getDataFromBlockchain",
+			"description": "If you get status code as 500 then that issue show that provided account addess is invalid or does not exists in blockchain.",
+			"collectionId": "02ff2c49-0982-80ce-fd75-6fc5db108394",
+			"responses": [],
+			"rawModeData": "{\n\t\"keyToFindData\":\"3\",\n\t\"dataFetchRequestingAccountPin\":\"1234\",\n\t\"dataFetchRequestingAccountAddress\":\"0x3093d860c7a92910f7ec9988140eb11ed276d42e\",\n\t\"contractAddress\":\"0xfcdd0c7c9884A514E4710dc99b661Ce493e5755f\"\n}\n"
+		},
+		{
+			"id": "56bb20a1-6336-6f25-7e95-04ab7cb96ffc",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4000/TransactionsEndpoints/getSentRecievedFundsTransactionsListByAccountAddress",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1645875653128,
+			"name": "getSentRecievedFundsTransactionsListByAccountAddress",
+			"description": "If you get toHash as null then that means a contract deployment was done with that transaction. [So show respective string over GUI]",
+			"collectionId": "02ff2c49-0982-80ce-fd75-6fc5db108394",
+			"responses": [],
+			"rawModeData": "{\n\t\"targetAccountAddress\":\"0x0bD89CaA996637464ae769AA59753A4C7f50eA63\"\n}"
+		},
+		{
+			"id": "56ca022a-9f66-e097-efd8-161d2123f9f0",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4000/ContractEndpoints/storeDataOnBlockchain",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1645897532236,
+			"name": "storeDataOnBlockchain",
+			"description": "If you get status code as 500 then that issue show that provided account addess is invalid or does not exists in blockchain.",
+			"collectionId": "02ff2c49-0982-80ce-fd75-6fc5db108394",
+			"responses": [],
+			"rawModeData": "{\n\t\"dataToStore\":\"Hey its my secret message to store on block chian. for second time zee\",\n\t\"requestingAccountAddress\":\"0x3093d860c7a92910f7ec9988140eb11ed276d42e\",\n\t\"contractAddress\":\"0xfcdd0c7c9884A514E4710dc99b661Ce493e5755f\",\n\t\"requestingAccountPin\":\"1234\"\n}"
+		},
+		{
+			"id": "5fa04e60-9020-d1be-d904-dd9505eb0414",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4000/TransactionsEndpoints/sendAmountFromOneAccountToOther",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1645898981523,
+			"name": "sendAmountFromOneAccountToOtherRouter",
+			"description": "Note when you get the 500 as response code that means the senders account address does not esits in the block chain.",
+			"collectionId": "02ff2c49-0982-80ce-fd75-6fc5db108394",
+			"responses": [],
+			"rawModeData": "{\n\t\"senderAccountAddress\":\"0x0bd89caa996637464ae769aa59753a4c7f50ea63\",\n\t\"recieverAccountAddress\":\"0x3093d860c7a92910f7ec9988140eb11ed276d42e\",\n\t\"senderAccountPin\":\"1234\",\n\t\"ammount\":\"200\",\n\t\"gasLimit\":\"21000\",\n\t\"gasPrice\":\"10\"\n}\n"
+		},
+		{
+			"id": "88b5db74-0516-7664-ce55-9e02148c6590",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4000/AuthenticationEndpoints/signIn",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1645733399650,
+			"name": "Login As individual",
+			"description": "",
+			"collectionId": "02ff2c49-0982-80ce-fd75-6fc5db108394",
+			"responses": [],
+			"rawModeData": "{\n\t\"email\":\"zeeshanahmedd0010@gmail.com\",\n\t\"password\":\"123456\",\n\t\"accountType\":\"Individual\"\n}"
+		},
+		{
+			"id": "90f3ada2-9d15-cfd1-fc8c-6bf27205c3be",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4000/AuthenticationEndpoints/signIn",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1645733907999,
+			"name": "Login As Organization",
+			"description": "",
+			"collectionId": "02ff2c49-0982-80ce-fd75-6fc5db108394",
+			"responses": [],
+			"rawModeData": "{\n\t\"email\":\"chairitydistributor@gmail.com\",\n\t\"password\":\"123456\",\n\t\"accountType\":\"Organization\"\n}"
+		},
+		{
+			"id": "b1f338d4-060a-be21-6a6e-abdff7460481",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4000/AccountEndpoints/createAccount",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1645733924796,
+			"name": "Creating Organization Account",
+			"description": "",
+			"collectionId": "02ff2c49-0982-80ce-fd75-6fc5db108394",
+			"responses": [],
+			"rawModeData": "{\n\t\t  \"email\":\"chairitydistributor@gmail.com\",\n          \"phoneNumber\":\"+923053206338\",\n          \"password\":\"123456\",\n          \"pin\":\"1234\",\n          \"emailVerified\": false,\n          \"displayName\":\"Chairity Distibutor\",\n          \"address\":\"\",\n          \"onlineStatus\":null,\n          \"photoUrl\":\"https://avatars.githubusercontent.com/u/66442918?s=400&u=d132ce9df59451343444655464cb44ed8339ab54&v=4\",\n          \"disabled\": false,\n          \"accountType\":\"Organization\",\n          \"description\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s\",\n          \"firstName\":\"\",\n          \"lastName\":\"\"\n}"
+		},
+		{
+			"id": "b8fbc047-2d0c-ce3f-eb05-161f3dd64deb",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4000/AccountEndpoints/getBalanceByAccountAddress",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1645898185013,
+			"name": "getBalanceByAccountAddress",
+			"description": "Note when you have response status code 500 that means the provided address does not exists.",
+			"collectionId": "02ff2c49-0982-80ce-fd75-6fc5db108394",
+			"responses": [],
+			"rawModeData": "{\n\t\"accountAddress\":\"0x0bD89CaA996637464ae769AA59753A4C7f50eA63\"\n}"
+		}
+	]
+}
