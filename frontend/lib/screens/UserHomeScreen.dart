@@ -3,6 +3,7 @@ import 'package:frontend/Components/optionCard.dart';
 import 'package:frontend/Components/sideDrawer.dart';
 import 'package:frontend/screens/ListOfOrganizationsScreen.dart';
 import 'package:frontend/screens/PostRequestScreen.dart';
+import 'package:frontend/screens/UserProfileScreen.dart';
 import 'package:frontend/screens/UserTransactionsScreen.dart';
 import 'package:frontend/screens/ViewBalanceScreen.dart';
 
@@ -15,7 +16,13 @@ class _UserHomeScreen extends State<UserHomeScreen> {
   late List<dynamic> drawerOptions;
   _UserHomeScreen() {
     drawerOptions = [
-      {"name": "Profile", "image": "profile.png", "onPressed": () {}},
+      {
+        "name": "Profile",
+        "image": "profile.png",
+        "onPressed": () {
+          profilePreessedHandler();
+        }
+      },
       {
         "name": "Post request",
         "image": "post-request.png",
@@ -44,7 +51,13 @@ class _UserHomeScreen extends State<UserHomeScreen> {
           balancePreessedHandler();
         }
       },
-      {"name": "Signout", "image": "sign-out.png", "onPressed": () {}}
+      {
+        "name": "Signout",
+        "image": "sign-out.png",
+        "onPressed": () {
+          logoutPreessedHandler();
+        }
+      }
     ];
   }
 
@@ -118,5 +131,15 @@ class _UserHomeScreen extends State<UserHomeScreen> {
   void balancePreessedHandler() {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => ViewBalanceScreen()));
+  }
+
+  void profilePreessedHandler() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => UserProfileSCreen()));
+  }
+
+  void logoutPreessedHandler() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => UserProfileSCreen()));
   }
 }

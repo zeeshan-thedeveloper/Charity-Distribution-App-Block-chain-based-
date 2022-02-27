@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "64076488434",
+    "firebase_url": "https://charity-distributor-default-rtdb.firebaseio.com",
+    "project_id": "charity-distributor",
+    "storage_bucket": "charity-distributor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64076488434:android:4fd480e10fb3a0dd36fa6b",
+        "android_client_info": {
+          "package_name": "com.example.frontend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64076488434-nmrk2vmhuvcgtr6n2878m835cq0ka1io.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6iufLhggQmOfLh2GBMcUUEwAtxeggMTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64076488434-nmrk2vmhuvcgtr6n2878m835cq0ka1io.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
