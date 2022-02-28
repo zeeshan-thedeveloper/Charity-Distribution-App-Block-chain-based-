@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/APICalls/LoginAPICall.dart';
+import 'package:frontend/screens/OrganizationHomeScreen.dart';
 import 'package:frontend/screens/UserHomeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -10,9 +12,23 @@ class _LoginScreen extends State<LoginScreen> {
 // Controllers
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+  static String USER = "user", ORGANIZATION = "organization";
+  String isUserOrOrganization = USER; // by default user
 
   @override
   Widget build(BuildContext context) {
+    void handleLoginPressed() {
+      if (isUserOrOrganization == USER) {
+        authenticateUser(emailController.text, passwordController.text,
+            isUserOrOrganization);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => UserHomeScreen()));
+      } else {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => OrganizationHomeScreen()));
+      }
+    }
+
     return Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
@@ -67,11 +83,7 @@ class _LoginScreen extends State<LoginScreen> {
                                       Expanded(
                                           child: OutlinedButton(
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      UserHomeScreen()));
+                                          handleLoginPressed();
                                         },
                                         child: Text("Login"),
                                       ))

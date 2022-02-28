@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/APICalls/CreateAccountAPICall.dart';
 
 class OrganizationRegistrationScreen extends StatefulWidget {
   @override
@@ -18,9 +19,30 @@ class _OrganizationRegistrationScreen
   // controllers
   TextEditingController nameController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController pinController = new TextEditingController();
+  TextEditingController descriptionController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    void handleOrganizationCreateAccoundPressed() {
+      createAccount(
+          emailController.text,
+          "",
+          passwordController.text,
+          pinController.text,
+          false,
+          nameController.text,
+          selecteCountry + ":" + selectedCity,
+          false,
+          "",
+          false,
+          "organization",
+          "",
+          "",
+          descriptionController.text);
+    }
+
     return Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
@@ -45,10 +67,32 @@ class _OrganizationRegistrationScreen
                         Row(children: [
                           Expanded(
                               child: TextFormField(
+                                  controller: emailController,
+                                  decoration: InputDecoration(
+                                    icon: Icon(Icons.email),
+                                    labelText: 'Email',
+                                  ))),
+                        ]),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Row(children: [
+                          Expanded(
+                              child: TextFormField(
                                   controller: nameController,
                                   decoration: InputDecoration(
                                     icon: Icon(Icons.perm_identity),
-                                    labelText: 'Name',
+                                    labelText: 'Title',
+                                  ))),
+                        ]),
+                        Row(children: [
+                          Expanded(
+                              child: TextFormField(
+                                  maxLines: 4,
+                                  controller: descriptionController,
+                                  decoration: InputDecoration(
+                                    icon: Icon(Icons.perm_identity),
+                                    labelText: 'Description',
                                   ))),
                         ]),
                         Row(
@@ -60,6 +104,18 @@ class _OrganizationRegistrationScreen
                                     decoration: InputDecoration(
                                       icon: Icon(Icons.lock),
                                       labelText: 'Password',
+                                    ))),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: TextFormField(
+                                    controller: pinController,
+                                    obscureText: true,
+                                    decoration: InputDecoration(
+                                      icon: Icon(Icons.lock),
+                                      labelText: 'Pin',
                                     ))),
                           ],
                         ),
@@ -131,7 +187,9 @@ class _OrganizationRegistrationScreen
                               children: [
                                 Expanded(
                                     child: OutlinedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    handleOrganizationCreateAccoundPressed();
+                                  },
                                   child: Text("Create Account"),
                                 ))
                               ],
