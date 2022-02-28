@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/Support/Constants.dart';
+import 'package:frontend/Support/SharedPreferencedHelper.dart';
+import 'package:frontend/modals/LoginResponse.dart';
 import 'package:frontend/modals/User.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserProfileSCreen extends StatefulWidget {
   @override
@@ -8,18 +12,21 @@ class UserProfileSCreen extends StatefulWidget {
 }
 
 class _UserProfileScreen extends State<UserProfileSCreen> {
-  late User current_user;
+  LoginResponsePayloadOfUser current_user = LoginResponsePayloadOfUser();
+
   TextStyle textStyle = TextStyle(fontSize: 18);
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    current_user = User(
-        firstName: "Nageeta",
-        lastName: "wadhwani",
-        email: "nigeetawadhwani@gmail.com",
-        userUid: "",
-        blockchainAccountAddress: "");
+    loadData();
+  }
+
+  loadData() async {
+    LoginResponsePayloadOfUser userLoad = LoginResponsePayloadOfUser.fromJson(
+        await SharedPreferencedHelper.read(USER_DETAILS));
+    setState(() {
+      current_user = userLoad;
+    });
   }
 
   @override

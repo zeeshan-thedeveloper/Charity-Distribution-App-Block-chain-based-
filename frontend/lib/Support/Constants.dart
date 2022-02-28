@@ -13,3 +13,7 @@ final String STORE_DATA_ON_BLOCK_CHAIN =
 final String GET_DATA_FROM_BLOCK_CHAIN =
     "ContractEndpoints/getDataFromBlockchain";
 final String PORT = "4000";
+final String IPADDRESS = "192.168.10.6";
+final String USER_DETAILS = "userDetails";
+final String ORGANIZATION_DETAILS = "organizationDetsils";
+final String INDIVIDUAL = "Individual", ORGANIZATION = "Organization";

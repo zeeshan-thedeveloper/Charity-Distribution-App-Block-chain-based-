@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/Components/optionCard.dart';
 import 'package:frontend/Components/sideDrawer.dart';
+import 'package:frontend/screens/OrganizationProfileScreen.dart';
 
 import 'OrganizationRequestScreen.dart';
 import 'OrganizationTransactionScreen.dart';
@@ -14,7 +15,13 @@ class _OrganizationHomeScreen extends State<OrganizationHomeScreen> {
   late List<dynamic> drawerOptions;
   _OrganizationHomeScreen() {
     drawerOptions = [
-      {"name": "Profile", "image": "profile.png", "onPressed": () {}},
+      {
+        "name": "Profile",
+        "image": "profile.png",
+        "onPressed": () {
+          profilePressedHandler();
+        }
+      },
       {
         "name": "Request",
         "image": "post-request.png",
@@ -97,5 +104,10 @@ class _OrganizationHomeScreen extends State<OrganizationHomeScreen> {
   void requestsPressedHandler() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => OrganizationRequestScreen()));
+  }
+
+  void profilePressedHandler() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => OrganizationProfileScreen()));
   }
 }

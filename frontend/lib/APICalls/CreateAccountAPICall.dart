@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:frontend/Support/Constants.dart';
 import 'package:http/http.dart' as http;
-import 'package:json_serializable/json_serializable.dart';
+// import 'package:json_serializable/json_serializable.dart';
 
 Future<http.Response> createAccount(
     String email,
@@ -20,7 +20,7 @@ Future<http.Response> createAccount(
     String lastName,
     var description) async {
   final response = await http.post(
-    Uri.parse('http://localhost:${PORT}/${CREATE_ACCOUNT}'),
+    Uri.parse('http://${IPADDRESS}:${PORT}/${CREATE_ACCOUNT}'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

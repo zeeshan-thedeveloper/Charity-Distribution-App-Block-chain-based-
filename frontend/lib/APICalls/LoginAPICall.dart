@@ -1,30 +1,27 @@
 import 'dart:convert';
 
 import 'package:frontend/Support/Constants.dart';
+import 'package:frontend/modals/LoginResponse.dart';
 import 'package:http/http.dart' as http;
-import 'package:json_serializable/json_serializable.dart';
+// import 'package:json_serializable/json_serializable.dart';
 
-Future<http.Response> authenticateUser(
+Future<LoginResponse> authenticateUser(
     String email, String password, String accountType) async {
   final response = await http.post(
-    Uri.parse('http://localhost:${PORT}/${SIGNIN_URL}'),
+    Uri.parse('http://${IPADDRESS}:${PORT}/${SIGNIN_URL}'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      'email': email,
-      'password': password,
-      'accountType': accountType
+      "email": email,
+      "password": password,
+      "accountType": accountType
     }),
   );
-  if (response.statusCode == 201) {
-    // If the server did return a 201 CREATED response,
-    // then parse the JSON.
-    // return Album.fromJson(jsonDecode(response.body));
-    return throw Exception('Failed to create album.');
+
+  if (response.statusCode == 200) {
+    return LoginResponse.fromJson(jsonDecode(response.body));
   } else {
-    // If the server did not return a 201 CREATED response,
-    // then throw an exception.
-    throw Exception('Failed to create album.');
+    throw Exception('Failed to login user');
   }
 }

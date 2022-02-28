@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:frontend/Support/Constants.dart';
 import 'package:http/http.dart' as http;
-import 'package:json_serializable/json_serializable.dart';
+// import 'package:json_serializable/json_serializable.dart';
 
 Future<http.Response> sendAmountFromOneAccountToAnother(
     String senderAccountAddress,
@@ -13,7 +13,7 @@ Future<http.Response> sendAmountFromOneAccountToAnother(
     String gasPrice) async {
   final response = await http.post(
     Uri.parse(
-        'http://localhost:${PORT}/${SEND_AMOUNT_FROM_ONE_ACCOUNT_TO_ANOTHER}'),
+        'http://${IPADDRESS}:${PORT}/${SEND_AMOUNT_FROM_ONE_ACCOUNT_TO_ANOTHER}'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

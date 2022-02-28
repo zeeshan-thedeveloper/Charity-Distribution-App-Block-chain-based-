@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/Support/Constants.dart';
+import 'package:frontend/Support/SharedPreferencedHelper.dart';
+import 'package:frontend/modals/LoginResponse.dart';
 import 'package:frontend/modals/Organization.dart';
 
 class OrganizationProfileScreen extends StatefulWidget {
@@ -8,18 +11,22 @@ class OrganizationProfileScreen extends StatefulWidget {
 }
 
 class _OrganizationProfileScreen extends State<OrganizationProfileScreen> {
-  late Organization current_organization;
+  LoginResponsePayloadOfOrganization current_organization =
+      LoginResponsePayloadOfOrganization();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    current_organization = Organization(
-        title: "org title",
-        email: "cnjrbvj@gmail.com",
-        userUid: "",
-        blockchainAccountAddress: "",
-        description:
-            "heloo heloo heloo heloo heloo heloo heloo heloo heloo heloo heloo  ");
+    loadData();
+  }
+
+  loadData() async {
+    LoginResponsePayloadOfOrganization userLoad =
+        LoginResponsePayloadOfOrganization.fromJson(
+            await SharedPreferencedHelper.read(ORGANIZATION_DETAILS));
+    setState(() {
+      current_organization = userLoad;
+    });
   }
 
   @override

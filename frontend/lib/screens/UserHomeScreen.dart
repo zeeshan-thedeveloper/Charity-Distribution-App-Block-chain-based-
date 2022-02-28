@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/Components/optionCard.dart';
 import 'package:frontend/Components/sideDrawer.dart';
+import 'package:frontend/modals/LoginResponse.dart';
 import 'package:frontend/screens/ListOfOrganizationsScreen.dart';
 import 'package:frontend/screens/PostRequestScreen.dart';
 import 'package:frontend/screens/UserProfileScreen.dart';
@@ -8,6 +9,8 @@ import 'package:frontend/screens/UserTransactionsScreen.dart';
 import 'package:frontend/screens/ViewBalanceScreen.dart';
 
 class UserHomeScreen extends StatefulWidget {
+//  Future<LoginResponse>? futureLoginResponse;
+//   UserHomeScreen({Key? key , required this.futureLoginResponse}):super(key:key);
   @override
   State<UserHomeScreen> createState() => _UserHomeScreen();
 }

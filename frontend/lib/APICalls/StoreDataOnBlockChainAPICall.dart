@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:frontend/Support/Constants.dart';
 import 'package:http/http.dart' as http;
-import 'package:json_serializable/json_serializable.dart';
+// import 'package:json_serializable/json_serializable.dart';
 
 Future<http.Response> storeDataOnBlockChain(
     String dataToStore,
@@ -10,7 +10,7 @@ Future<http.Response> storeDataOnBlockChain(
     String contractAddress,
     String requestingAccountPin) async {
   final response = await http.post(
-    Uri.parse('http://localhost:${PORT}/${STORE_DATA_ON_BLOCK_CHAIN}'),
+    Uri.parse('http://${IPADDRESS}:${PORT}/${STORE_DATA_ON_BLOCK_CHAIN}'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

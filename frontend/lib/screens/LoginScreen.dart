@@ -1,7 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:frontend/APICalls/LoginAPICall.dart';
+import 'package:frontend/Support/Constants.dart';
+import 'package:frontend/modals/LoginResponse.dart';
 import 'package:frontend/screens/OrganizationHomeScreen.dart';
 import 'package:frontend/screens/UserHomeScreen.dart';
+import 'package:frontend/Support/SharedPreferencedHelper.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -12,20 +17,54 @@ class _LoginScreen extends State<LoginScreen> {
 // Controllers
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
-  static String USER = "user", ORGANIZATION = "organization";
-  String isUserOrOrganization = USER; // by default user
+
+  String isUserOrOrganization = INDIVIDUAL; // by default user
+  Future<LoginResponse>? _futureLoginResponse;
 
   @override
   Widget build(BuildContext context) {
+    /// method which will be called when user clikc on login button
     void handleLoginPressed() {
-      if (isUserOrOrganization == USER) {
+      if (isUserOrOrganization == INDIVIDUAL) {
         authenticateUser(emailController.text, passwordController.text,
-            isUserOrOrganization);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => UserHomeScreen()));
-      } else {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => OrganizationHomeScreen()));
+                isUserOrOrganization)
+            .then((value) {
+          // create a user payload object to save it in shared preference
+          LoginResponsePayloadOfUser loginResponsePayload =
+              LoginResponsePayloadOfUser(
+            blockchainAccountAddress:
+                value.responsePayload["blockchainAccountAddress"],
+            email: value.responsePayload["email"],
+            firstName: value.responsePayload["firstName"],
+            lastName: value.responsePayload["lastName"],
+            userUid: value.responsePayload["userUid"],
+          );
+
+          SharedPreferencedHelper.save(USER_DETAILS, loginResponsePayload);
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => UserHomeScreen()));
+        });
+      } else if (isUserOrOrganization == ORGANIZATION) {
+        authenticateUser(emailController.text, passwordController.text,
+                isUserOrOrganization)
+            .then((value) {
+          LoginResponsePayloadOfOrganization
+              _loginResponsePayloadOfOrganization =
+              LoginResponsePayloadOfOrganization(
+            blockchainAccountAddress:
+                value.responsePayload["blockchainAccountAddress"],
+            email: value.responsePayload["email"],
+            title: value.responsePayload["title"],
+            description: value.responsePayload["description"],
+            userUid: value.responsePayload["userUid"],
+          );
+          SharedPreferencedHelper.save(
+              ORGANIZATION_DETAILS, _loginResponsePayloadOfOrganization);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => OrganizationHomeScreen()));
+        });
       }
     }
 
@@ -75,6 +114,30 @@ class _LoginScreen extends State<LoginScreen> {
                                             labelText: 'Password',
                                           ))),
                                 ],
+                              ),
+                              ListTile(
+                                title: Text(INDIVIDUAL),
+                                leading: Radio(
+                                  value: INDIVIDUAL,
+                                  groupValue: isUserOrOrganization,
+                                  onChanged: (String? value) {
+                                    setState(() {
+                                      isUserOrOrganization = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                              ListTile(
+                                title: Text(ORGANIZATION),
+                                leading: Radio(
+                                  value: ORGANIZATION,
+                                  groupValue: isUserOrOrganization,
+                                  onChanged: (String? value) {
+                                    setState(() {
+                                      isUserOrOrganization = value!;
+                                    });
+                                  },
+                                ),
                               ),
                               Padding(
                                   padding: EdgeInsets.only(top: 20),
