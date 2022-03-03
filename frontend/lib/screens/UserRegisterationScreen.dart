@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/APICalls/CreateAccountAPICall.dart';
+import 'package:frontend/Support/Constants.dart';
+import 'package:frontend/screens/RegistrationOptionsScreen.dart';
 
 class UserRegistrationScreen extends StatefulWidget {
   @override
@@ -15,26 +17,41 @@ class _UserRegistrationScreen extends State<UserRegistrationScreen> {
   TextEditingController lastNameControler = new TextEditingController();
   TextEditingController passwordControler = new TextEditingController();
   TextEditingController pinControler = new TextEditingController();
+  TextEditingController phoneNumberControler = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     void handlePressedCreateUserAccount() {
       createAccount(
-          emailControler.text,
-          "",
-          passwordControler.text,
-          pinControler.text,
-          false,
-          firstNameControler.text,
-          "",
-          false,
-          "",
-          false,
-          "user",
-          firstNameControler.text,
-          lastNameControler.text,
-          "");
-          // after responce navigate
-          
+              emailControler.text,
+              phoneNumberControler.text,
+              passwordControler.text,
+              pinControler.text,
+              false,
+              firstNameControler.text,
+              "",
+              null,
+              "https://avatars.githubusercontent.com/u/66442918?s=400&u=d132ce9df59451343444655464cb44ed8339ab54&v=4",
+              false,
+              INDIVIDUAL,
+              firstNameControler.text,
+              lastNameControler.text,
+              null)
+          .then((response) {
+        if (response.responseCode == NEW_ACCOUNT_CREATION_EMAIL_SENT) {
+          showDialog(
+              context: context,
+              builder: (context) =>
+                  gernalDialog(context, response.responseMessage, "Info"));
+        } else {
+          // error
+          showDialog(
+              context: context,
+              builder: (context) =>
+                  gernalDialog(context, response.responseMessage, "Error"));
+        }
+      });
+      // after responce navigate
     }
 
     return Scaffold(
@@ -88,13 +105,23 @@ class _UserRegistrationScreen extends State<UserRegistrationScreen> {
                                         labelText: 'Email',
                                       ))),
                             ]),
+                            Row(children: [
+                              Expanded(
+                                  child: TextFormField(
+                                      maxLength: 13,
+                                      controller: phoneNumberControler,
+                                      decoration: InputDecoration(
+                                        icon: Icon(Icons.phone),
+                                        labelText: 'phone Number',
+                                      ))),
+                            ]),
                             Row(
                               children: [
                                 Expanded(
                                     child: TextFormField(
                                         obscureText: true,
                                         maxLength: 6,
-                                        controller: pinControler,
+                                        controller: passwordControler,
                                         decoration: InputDecoration(
                                           suffixIcon: IconButton(
                                               onPressed: () {
@@ -120,7 +147,7 @@ class _UserRegistrationScreen extends State<UserRegistrationScreen> {
                                 Expanded(
                                     child: TextFormField(
                                         obscureText: true,
-                                        controller: passwordControler,
+                                        controller: pinControler,
                                         decoration: InputDecoration(
                                           suffixIcon: IconButton(
                                               onPressed: () {
@@ -159,4 +186,22 @@ class _UserRegistrationScreen extends State<UserRegistrationScreen> {
                       ]))),
         ));
   }
+}
+
+AlertDialog gernalDialog(BuildContext context, String messgae, String title) {
+  return AlertDialog(
+    title: Text(title),
+    content: Text(messgae),
+    actions: [
+      FlatButton(
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => RegistrationOptionsScreen()));
+          },
+          child: Text('OK')),
+    ],
+  );
 }

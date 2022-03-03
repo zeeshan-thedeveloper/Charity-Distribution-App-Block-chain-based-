@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/Support/Constants.dart';
 import 'package:frontend/Support/SharedPreferencedHelper.dart';
-import 'package:frontend/modals/LoginResponse.dart';
+import 'package:frontend/modals/LoginResponsePayload.dart';
 import 'package:frontend/modals/Organization.dart';
 
 class OrganizationProfileScreen extends StatefulWidget {

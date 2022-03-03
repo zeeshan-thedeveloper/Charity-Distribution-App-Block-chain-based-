@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/Components/optionCard.dart';
 import 'package:frontend/Components/sideDrawer.dart';
-import 'package:frontend/modals/LoginResponse.dart';
+import 'package:frontend/Support/SharedPreferencedHelper.dart';
+import 'package:frontend/modals/LoginResponsePayload.dart';
+import 'package:frontend/screens/EntryScreen.dart';
 import 'package:frontend/screens/ListOfOrganizationsScreen.dart';
 import 'package:frontend/screens/PostRequestScreen.dart';
 import 'package:frontend/screens/UserProfileScreen.dart';
-import 'package:frontend/screens/UserTransactionsScreen.dart';
+import 'package:frontend/screens/TransactionsScreen.dart';
 import 'package:frontend/screens/ViewBalanceScreen.dart';
 
 class UserHomeScreen extends StatefulWidget {
@@ -26,13 +28,13 @@ class _UserHomeScreen extends State<UserHomeScreen> {
           profilePreessedHandler();
         }
       },
-      {
-        "name": "Post request",
-        "image": "post-request.png",
-        "onPressed": () {
-          postRequestPreessedHandler();
-        }
-      },
+      // {
+      //   "name": "Post request",
+      //   "image": "post-request.png",
+      //   "onPressed": () {
+      //     postRequestPreessedHandler();
+      //   }
+      // },
       {
         "name": "Transaction history",
         "image": "transaction.png",
@@ -105,7 +107,7 @@ class _UserHomeScreen extends State<UserHomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: drawerOptions
-                        .getRange(4, 6)
+                        .getRange(4, 5)
                         .map((item) => getOptionCard(context, item))
                         .toList(),
                   ),
@@ -117,8 +119,8 @@ class _UserHomeScreen extends State<UserHomeScreen> {
   }
 
   void transactionPressedHandler() {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => UserTransactionsScreen()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => TransactionsScreen()));
   }
 
   void donatePreessedHandler() {
@@ -142,7 +144,9 @@ class _UserHomeScreen extends State<UserHomeScreen> {
   }
 
   void logoutPreessedHandler() {
+    // clear data
+    SharedPreferencedHelper.clearAll();
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => UserProfileSCreen()));
+        context, MaterialPageRoute(builder: (context) => EntryScreen()));
   }
 }

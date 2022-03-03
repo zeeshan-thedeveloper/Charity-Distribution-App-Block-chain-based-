@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/Support/Constants.dart';
 import 'package:frontend/Support/SharedPreferencedHelper.dart';
-import 'package:frontend/modals/LoginResponse.dart';
+import 'package:frontend/modals/LoginResponsePayload.dart';
 import 'package:frontend/modals/User.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,7 +23,7 @@ class _UserProfileScreen extends State<UserProfileSCreen> {
 
   loadData() async {
     LoginResponsePayloadOfUser userLoad = LoginResponsePayloadOfUser.fromJson(
-        await SharedPreferencedHelper.read(USER_DETAILS));
+        await SharedPreferencedHelper.read(INDIVIDUAL_DETAILS));
     setState(() {
       current_user = userLoad;
     });

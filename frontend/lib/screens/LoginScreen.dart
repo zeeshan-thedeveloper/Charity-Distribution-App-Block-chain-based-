@@ -3,10 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:frontend/APICalls/LoginAPICall.dart';
 import 'package:frontend/Support/Constants.dart';
-import 'package:frontend/modals/LoginResponse.dart';
+import 'package:frontend/modals/LoginResponsePayload.dart';
+import 'package:frontend/modals/RecievedResponse.dart';
 import 'package:frontend/screens/OrganizationHomeScreen.dart';
 import 'package:frontend/screens/UserHomeScreen.dart';
 import 'package:frontend/Support/SharedPreferencedHelper.dart';
+import 'package:frontend/screens/UserRegisterationScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -19,7 +21,7 @@ class _LoginScreen extends State<LoginScreen> {
   TextEditingController passwordController = new TextEditingController();
 
   String isUserOrOrganization = INDIVIDUAL; // by default user
-  Future<LoginResponse>? _futureLoginResponse;
+  Future<RecievedResponse>? _futureLoginResponse;
 
   @override
   Widget build(BuildContext context) {
@@ -29,41 +31,62 @@ class _LoginScreen extends State<LoginScreen> {
         authenticateUser(emailController.text, passwordController.text,
                 isUserOrOrganization)
             .then((value) {
-          // create a user payload object to save it in shared preference
-          LoginResponsePayloadOfUser loginResponsePayload =
-              LoginResponsePayloadOfUser(
-            blockchainAccountAddress:
-                value.responsePayload["blockchainAccountAddress"],
-            email: value.responsePayload["email"],
-            firstName: value.responsePayload["firstName"],
-            lastName: value.responsePayload["lastName"],
-            userUid: value.responsePayload["userUid"],
-          );
+          // print('response code ${value.responseCode}');
+          // print(SUCCESSFULL_LOGIN);
+          if (value.responseCode == SUCCESSFULL_LOGIN) {
+            LoginResponsePayloadOfUser loginResponsePayload =
+                LoginResponsePayloadOfUser(
+              blockchainAccountAddress:
+                  value.responsePayload["blockchainAccountAddress"],
+              email: value.responsePayload["email"],
+              firstName: value.responsePayload["firstName"],
+              lastName: value.responsePayload["lastName"],
+              userUid: value.responsePayload["userUid"],
+            );
 
-          SharedPreferencedHelper.save(USER_DETAILS, loginResponsePayload);
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => UserHomeScreen()));
+            SharedPreferencedHelper.save(
+                INDIVIDUAL_DETAILS, loginResponsePayload);
+            SharedPreferencedHelper.save(
+                CURRENT_LOGIN_USER, isUserOrOrganization);
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => UserHomeScreen()));
+          } else {
+            showDialog(
+                context: context,
+                builder: (context) =>
+                    gernalDialog(context, value.responseMessage, "Error"));
+          }
+          // create a user payload object to save it in shared preference
         });
       } else if (isUserOrOrganization == ORGANIZATION) {
         authenticateUser(emailController.text, passwordController.text,
                 isUserOrOrganization)
             .then((value) {
-          LoginResponsePayloadOfOrganization
-              _loginResponsePayloadOfOrganization =
-              LoginResponsePayloadOfOrganization(
-            blockchainAccountAddress:
-                value.responsePayload["blockchainAccountAddress"],
-            email: value.responsePayload["email"],
-            title: value.responsePayload["title"],
-            description: value.responsePayload["description"],
-            userUid: value.responsePayload["userUid"],
-          );
-          SharedPreferencedHelper.save(
-              ORGANIZATION_DETAILS, _loginResponsePayloadOfOrganization);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => OrganizationHomeScreen()));
+          if (value.responseCode == SUCCESSFULL_LOGIN) {
+            LoginResponsePayloadOfOrganization
+                _loginResponsePayloadOfOrganization =
+                LoginResponsePayloadOfOrganization(
+              blockchainAccountAddress:
+                  value.responsePayload["blockchainAccountAddress"],
+              email: value.responsePayload["email"],
+              title: value.responsePayload["title"],
+              description: value.responsePayload["description"],
+              userUid: value.responsePayload["userUid"],
+            );
+            SharedPreferencedHelper.save(
+                ORGANIZATION_DETAILS, _loginResponsePayloadOfOrganization);
+            SharedPreferencedHelper.save(
+                CURRENT_LOGIN_USER, isUserOrOrganization);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => OrganizationHomeScreen()));
+          } else {
+            showDialog(
+                context: context,
+                builder: (context) =>
+                    gernalDialog(context, value.responseMessage, "Error"));
+          }
         });
       }
     }
@@ -156,4 +179,18 @@ class _LoginScreen extends State<LoginScreen> {
                       ]))),
         ));
   }
+}
+
+AlertDialog gernalDialog(BuildContext context, String messgae, String title) {
+  return AlertDialog(
+    title: Text(title),
+    content: Text(messgae),
+    actions: [
+      FlatButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('OK')),
+    ],
+  );
 }

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/Components/optionCard.dart';
 import 'package:frontend/Components/sideDrawer.dart';
+import 'package:frontend/screens/EntryScreen.dart';
+import 'package:frontend/screens/ListOfIndividualScreen.dart';
 import 'package:frontend/screens/OrganizationProfileScreen.dart';
+import 'package:frontend/screens/TransactionsScreen.dart';
+import 'package:frontend/screens/ViewBalanceScreen.dart';
 
 import 'OrganizationRequestScreen.dart';
-import 'OrganizationTransactionScreen.dart';
 
 class OrganizationHomeScreen extends StatefulWidget {
   @override
@@ -22,13 +25,13 @@ class _OrganizationHomeScreen extends State<OrganizationHomeScreen> {
           profilePressedHandler();
         }
       },
-      {
-        "name": "Request",
-        "image": "post-request.png",
-        "onPressed": () {
-          requestsPressedHandler();
-        }
-      },
+      // {
+      //   "name": "Request",
+      //   "image": "post-request.png",
+      //   "onPressed": () {
+      //     requestsPressedHandler();
+      //   }
+      // },
       {
         "name": "Transaction history",
         "image": "transaction.png",
@@ -36,9 +39,27 @@ class _OrganizationHomeScreen extends State<OrganizationHomeScreen> {
           transactionPressedHandler();
         }
       },
-      {"name": "Distribute", "image": "distribute.png", "onPressed": () {}},
-      {"name": "Balance", "image": "amount.png", "onPressed": () {}},
-      {"name": "Signout", "image": "sign-out.png", "onPressed": () {}}
+      {
+        "name": "Distribute",
+        "image": "distribute.png",
+        "onPressed": () {
+          distributePressedHandler();
+        }
+      },
+      {
+        "name": "Balance",
+        "image": "amount.png",
+        "onPressed": () {
+          balancePressedHandler();
+        }
+      },
+      {
+        "name": "Signout",
+        "image": "sign-out.png",
+        "onPressed": () {
+          signOutPressedHandler();
+        }
+      }
     ];
   }
 
@@ -83,7 +104,7 @@ class _OrganizationHomeScreen extends State<OrganizationHomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: drawerOptions
-                        .getRange(4, 6)
+                        .getRange(4, 5)
                         .map((item) => getOptionCard(context, item))
                         .toList(),
                   ),
@@ -96,9 +117,7 @@ class _OrganizationHomeScreen extends State<OrganizationHomeScreen> {
 
   void transactionPressedHandler() {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => OrganizationTransactionScreen()));
+        context, MaterialPageRoute(builder: (context) => TransactionsScreen()));
   }
 
   void requestsPressedHandler() {
@@ -109,5 +128,20 @@ class _OrganizationHomeScreen extends State<OrganizationHomeScreen> {
   void profilePressedHandler() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => OrganizationProfileScreen()));
+  }
+
+  void balancePressedHandler() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => ViewBalanceScreen()));
+  }
+
+  void signOutPressedHandler() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => EntryScreen()));
+  }
+
+  void distributePressedHandler() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ListOfIndividualsScreen()));
   }
 }

@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:frontend/Support/Constants.dart';
+import 'package:frontend/modals/RecievedResponse.dart';
 import 'package:http/http.dart' as http;
 // import 'package:json_serializable/json_serializable.dart';
 
-Future<http.Response> createAccount(
+Future<RecievedResponse> createAccount(
     String email,
     String phoneNumber,
     String password,
@@ -41,14 +42,11 @@ Future<http.Response> createAccount(
       'description': description
     }),
   );
-  if (response.statusCode == 201) {
-    // If the server did return a 201 CREATED response,
-    // then parse the JSON.
-    // return Album.fromJson(jsonDecode(response.body));
-    return throw Exception('Failed to create album.');
+  if (response.statusCode == 200) {
+    print(response.body);
+    return RecievedResponse.fromJson(jsonDecode(response.body));
   } else {
-    // If the server did not return a 201 CREATED response,
-    // then throw an exception.
-    throw Exception('Failed to create album.');
+   print(response.body);
+    return RecievedResponse.fromJson(jsonDecode(response.body));
   }
 }

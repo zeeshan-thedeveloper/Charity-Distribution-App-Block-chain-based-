@@ -1,20 +1,3 @@
-class LoginResponse {
-  var responsePayload;
-  String responseMessage;
-  int responseCode;
-  LoginResponse(
-      {required this.responsePayload,
-      required this.responseCode,
-      required this.responseMessage});
-
-  factory LoginResponse.fromJson(Map<String, dynamic> json) {
-    return LoginResponse(
-        responsePayload: json['responsePayload'],
-        responseMessage: json['responseMessage'],
-        responseCode: json['responseCode']);
-  }
-}
-
 class LoginResponsePayloadOfUser {
   String blockchainAccountAddress;
 

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/APICalls/CreateAccountAPICall.dart';
+import 'package:frontend/Support/Constants.dart';
+import 'package:frontend/screens/LoginScreen.dart';
+import 'package:http/http.dart';
 
 class OrganizationRegistrationScreen extends StatefulWidget {
   @override
@@ -22,25 +25,35 @@ class _OrganizationRegistrationScreen
   TextEditingController emailController = new TextEditingController();
   TextEditingController pinController = new TextEditingController();
   TextEditingController descriptionController = new TextEditingController();
+  TextEditingController phoneNumberController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     void handleOrganizationCreateAccoundPressed() {
       createAccount(
-          emailController.text,
-          "",
-          passwordController.text,
-          pinController.text,
-          false,
-          nameController.text,
-          selecteCountry + ":" + selectedCity,
-          null,
-          "https://avatars.githubusercontent.com/u/66442918?s=400&u=d132ce9df59451343444655464cb44ed8339ab54&v=4",
-          false,
-          "organization",
-          "",
-          "",
-          descriptionController.text);
+              emailController.text,
+              phoneNumberController.text,
+              passwordController.text,
+              pinController.text,
+              false,
+              nameController.text,
+              selecteCountry + ":" + selectedCity,
+              null,
+              "https://avatars.githubusercontent.com/u/66442918?s=400&u=d132ce9df59451343444655464cb44ed8339ab54&v=4",
+              false,
+              ORGANIZATION,
+              "",
+              "",
+              descriptionController.text)
+          .then((response) {
+        if (response.responseCode == SUCCESSFULL_LOGIN) {
+        } else {
+          showDialog(
+              context: context,
+              builder: (context) =>
+                  gernalDialog(context, response.responseMessage, "Error"));
+        }
+      });
     }
 
     return Scaffold(
@@ -73,6 +86,16 @@ class _OrganizationRegistrationScreen
                                     labelText: 'Email',
                                   ))),
                         ]),
+                        Row(children: [
+                          Expanded(
+                              child: TextFormField(
+                                  maxLength: 13,
+                                  controller: phoneNumberController,
+                                  decoration: InputDecoration(
+                                    icon: Icon(Icons.phone),
+                                    labelText: 'Phone number',
+                                  ))),
+                        ]),
                         SizedBox(
                           height: 40,
                         ),
@@ -99,6 +122,7 @@ class _OrganizationRegistrationScreen
                           children: [
                             Expanded(
                                 child: TextFormField(
+                                    maxLength: 6,
                                     controller: passwordController,
                                     obscureText: true,
                                     decoration: InputDecoration(
@@ -197,4 +221,20 @@ class _OrganizationRegistrationScreen
                       ]))),
         ));
   }
+}
+
+AlertDialog gernalDialog(BuildContext context, String messgae, String title) {
+  return AlertDialog(
+    title: Text(title),
+    content: Text(messgae),
+    actions: [
+      FlatButton(
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => LoginScreen()));
+          },
+          child: Text('OK')),
+    ],
+  );
 }
