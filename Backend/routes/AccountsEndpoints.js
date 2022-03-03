@@ -6,6 +6,8 @@ var createAccountRouter = express.Router();
 var getBalanceByAccountAddressRouter = express.Router();
 var getListOfOrganizationRouter=express.Router();
 var getNeedyAccountsRouter = express.Router(); 
+var getAllAccountAddressRouter = express.Router();
+
 module.exports={ 
     createAccountRouter:createAccountRouter.post("/createAccount",(req,resp)=>{
 
@@ -198,5 +200,22 @@ module.exports={
         })
 
        
+    }),
+    getAllAccountAddressRouter:getAllAccountAddressRouter.get("/getAllAccountAddress",(req,resp)=>{
+        web3.eth.personal.getAccounts()
+        .then((data)=>{
+            
+            resp.status(200).send({
+                responseCode:819,
+                responseMessage:"Here is the list of all account present on the bloch chain",
+                responsePayload:data
+            })
+        }).catch((error)=>{
+            resp.status(200).send({
+                responseCode:819,
+                responseMessage:"Please check if node is running or not..",
+                responsePayload:error
+            })
+        })
     })
 }
