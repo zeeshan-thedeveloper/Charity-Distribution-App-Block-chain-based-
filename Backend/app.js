@@ -7,7 +7,8 @@ var logger = require('morgan');
 //Account end-points.
 const {
   createAccountRouter,
-  getBalanceByAccountAddressRouter
+  getBalanceByAccountAddressRouter,
+  getNeedyAccountsRouter
 }= require("./routes/AccountsEndpoints")
 
 //Transactions end-points
@@ -42,6 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/AccountEndpoints', createAccountRouter);
 app.use('/AccountEndpoints', getBalanceByAccountAddressRouter);
+app.use('/AccountEndpoints', getNeedyAccountsRouter);
 
 app.use('/AuthenticationEndpoints', signInRouter);
 

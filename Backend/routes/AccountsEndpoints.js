@@ -5,7 +5,7 @@ const {web3} = require('./blockchainConnector');
 var createAccountRouter = express.Router();
 var getBalanceByAccountAddressRouter = express.Router();
 var getListOfOrganizationRouter=express.Router();
-
+var getNeedyAccountsRouter = express.Router(); 
 module.exports={ 
     createAccountRouter:createAccountRouter.post("/createAccount",(req,resp)=>{
 
@@ -52,14 +52,15 @@ module.exports={
                               
                               //Storing over real time database.    
                               const usersRef = ref.child('Users');
-                              
+                              //accountCatagory:"Donator" or "Needy"
                               usersRef.child(user.uid).set({
                                 //This will be stored over real time database.
                                 firstName:req.body.firstName,
                                 lastName:req.body.lastName,
                                 userUid:user.uid,
                                 email:req.body.email,
-                                blockchainAccountAddress:address
+                                blockchainAccountAddress:address,
+                                accountCatagory:req.body.accountCatagory
                               },(error)=>{
                                   if(error){
                                     console.log("Could not write data on realtime database.")
@@ -78,7 +79,8 @@ module.exports={
                                   }
                               })
 
-                              }else{
+                              }
+                              else{
                                   //Add in the list of Organization account
                               
                               //Storing over real time database.    
@@ -174,5 +176,27 @@ module.exports={
             })
         })
 
+    }),
+    getNeedyAccountsRouter:getNeedyAccountsRouter.get("/getNeedyAccounts",(req,resp)=>{
+        ref.child("Users").once('value', (snapshot) => {
+            let tempRec=[]
+            snapshot.forEach((record)=>{
+                tempRec.push(record.val())
+            })
+            // console.log(tempRec);
+            let responseToSend=[]
+            tempRec.forEach((item)=>{
+                if(item.accountCatagory=="Needy")
+                responseToSend.push(item)
+            })
+            // console.log(responseToSend);
+            resp.status(200).send({
+                responseCode:818,
+                responseMessage:"List of accounts which need your support.!!",
+                responsePayload:responseToSend
+            })
+        })
+
+       
     })
 }
