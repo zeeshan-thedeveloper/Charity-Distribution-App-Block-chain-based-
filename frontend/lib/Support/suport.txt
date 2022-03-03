@@ -1,0 +1,4 @@
+create a reponse modal class for recieved reponses
+decode it then using factory method return it's object to calling widget
+use then and get value of future 
+store data in shared preferences

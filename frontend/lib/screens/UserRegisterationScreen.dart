@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/APICalls/CreateAccountAPICall.dart';
 
 class UserRegistrationScreen extends StatefulWidget {
   @override
@@ -16,6 +17,26 @@ class _UserRegistrationScreen extends State<UserRegistrationScreen> {
   TextEditingController pinControler = new TextEditingController();
   @override
   Widget build(BuildContext context) {
+    void handlePressedCreateUserAccount() {
+      createAccount(
+          emailControler.text,
+          "",
+          passwordControler.text,
+          pinControler.text,
+          false,
+          firstNameControler.text,
+          "",
+          false,
+          "",
+          false,
+          "user",
+          firstNameControler.text,
+          lastNameControler.text,
+          "");
+          // after responce navigate
+          
+    }
+
     return Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
@@ -126,7 +147,9 @@ class _UserRegistrationScreen extends State<UserRegistrationScreen> {
                                   children: [
                                     Expanded(
                                         child: OutlinedButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        handlePressedCreateUserAccount();
+                                      },
                                       child: Text("Create Account"),
                                     ))
                                   ],
