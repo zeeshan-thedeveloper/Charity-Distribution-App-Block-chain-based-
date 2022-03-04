@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/screens/LoginScreen.dart';
 import 'package:frontend/screens/RegistrationOptionsScreen.dart';
+import 'package:frontend/screens/SmartContractScreen.dart';
 
 class EntryScreen extends StatelessWidget {
   @override
@@ -41,6 +42,20 @@ class EntryScreen extends StatelessWidget {
                                         RegistrationOptionsScreen()));
                           },
                           child: Text("Register")))
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                      child: OutlinedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        SmartContractScreen()));
+                          },
+                          child: Text("Smart Contract Demo")))
                 ],
               ),
             ],

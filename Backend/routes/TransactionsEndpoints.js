@@ -48,7 +48,7 @@ module.exports={
                             signedTransaction.tx.hash
                         },senderAccountPin).then((txtHash)=>{
                             resp.status(200).send({
-                                responsePlayload:true,
+                                responsePayload:true,
                                 responseMessage:"Amount: "+ammount+" sent from: "+senderAccountAddress+" to: "+recieverAccountAddress+" Since transaction hash is : "+txtHash,
                                 responseCode:807
                             })
@@ -56,7 +56,7 @@ module.exports={
                             console.log(error.message)
                             console.log("Error in sending signed transactions..!")
                             resp.status(200).send({
-                                responsePlayload:error.message,
+                                responsePayload:error.message,
                                 responseMessage:"Please provide enough gas ammount to process transaction",
                                 responseCode:818
                             })
@@ -70,7 +70,7 @@ module.exports={
                 console.log(error.message)
                 console.log("Error in unlocking account")
                 resp.status(200).send({
-                    responsePlayload:error.message,
+                    responsePayload:error.message,
                     responseMessage:"Plear provide your private key or check the reciver account address to unlock account and process transaction",
                     responseCode:818
                 })
@@ -139,7 +139,7 @@ module.exports={
                     }
 
                     resp.status(200).send({
-                        responsePlayload:{
+                        responsePayload:{
                             sentFundsTransactionList:sentFundsTransactionList,
                             recievedFundsTransactionList:recievedFundsTransactionList
                         },
@@ -158,7 +158,7 @@ module.exports={
             console.log(error.message)
             console.log("Error in geting block number")
             resp.status(200).send({
-                responsePlayload:error.message,
+                responsePayload:error.message,
                 responseMessage:"Make sure your node is running",
                 responseCode:819
             })
@@ -186,13 +186,13 @@ module.exports={
                 }
             })
             resp.status(200).send({
-                responsePlayload:transactionList,
+                responsePayload:transactionList,
                 responseMessage:"List of your,Mr :"+targetAccountAddress+", pending transactions "+transactionList,
                 responseCode:811
             })
         }).catch((error)=>{
             resp.status(200).send({
-                responsePlayload:error.message,
+                responsePayload:error.message,
                 responseMessage:"Please make sure you node is running or your provide hash is correct. For futher details watch message payload.",
                 responseCode:820
             }) 

@@ -14,7 +14,7 @@ final String STORE_DATA_ON_BLOCK_CHAIN =
 final String GET_DATA_FROM_BLOCK_CHAIN =
     "ContractEndpoints/getDataFromBlockchain";
 final String PORT = "4000";
-final String IPADDRESS = "10.102.142.193";
+final String IPADDRESS = "192.168.224.30";
 final String INDIVIDUAL_DETAILS = "individualDetails";
 final String ORGANIZATION_DETAILS = "organizationDetails";
 final String INDIVIDUAL = "Individual", ORGANIZATION = "Organization";
@@ -24,5 +24,8 @@ var SUCESSFUL_TRANSACTION = 807;
 var SUCESSFUL_TRANSACTIONS_FETCHED = 808;
 final String CURRENT_LOGIN_USER = "currentLoginUser";
 var ACCOUNT_BALANCE_FETCHED = 806;
+var CONTRACT_DEPLOYED_SUCCESSFULLY = 812;
+var CONTRACT_DATA_SET_ON_BLOCKCHAIN = 813;
+var CONTRACT_DATA_GET_FROM_BLOCKCHAIN = 814;
 final String ORGANIZATION_COLLECTION = "Organizations";
 final String INDIVIDUAL_COLLECTION = "Users";
