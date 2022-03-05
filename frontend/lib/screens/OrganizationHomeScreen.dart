@@ -69,8 +69,9 @@ class _OrganizationHomeScreen extends State<OrganizationHomeScreen> {
       appBar: AppBar(
         //leading: Icon(Icons.dashboard),
         title: Text("Dashboard"),
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.dashboard)),
       ),
-      drawer: getDrawer(context),
+      // drawer: getDrawer(context),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(

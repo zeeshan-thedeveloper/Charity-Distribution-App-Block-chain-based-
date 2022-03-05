@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/Components/optionCard.dart';
 import 'package:frontend/Components/sideDrawer.dart';
+import 'package:frontend/Support/Constants.dart';
 import 'package:frontend/Support/SharedPreferencedHelper.dart';
 import 'package:frontend/modals/LoginResponsePayload.dart';
 import 'package:frontend/screens/EntryScreen.dart';
@@ -11,14 +12,15 @@ import 'package:frontend/screens/TransactionsScreen.dart';
 import 'package:frontend/screens/ViewBalanceScreen.dart';
 
 class UserHomeScreen extends StatefulWidget {
-//  Future<LoginResponse>? futureLoginResponse;
-//   UserHomeScreen({Key? key , required this.futureLoginResponse}):super(key:key);
+  String isNeedyOrDonator;
+  UserHomeScreen({Key? key, required this.isNeedyOrDonator}) : super(key: key);
   @override
   State<UserHomeScreen> createState() => _UserHomeScreen();
 }
 
 class _UserHomeScreen extends State<UserHomeScreen> {
   late List<dynamic> drawerOptions;
+  int isNeedy = 3;
   _UserHomeScreen() {
     drawerOptions = [
       {
@@ -65,6 +67,22 @@ class _UserHomeScreen extends State<UserHomeScreen> {
       }
     ];
   }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    /// check for needy or donater
+    loadData();
+  }
+
+  loadData() async {
+    setState(() {
+      if (widget.isNeedyOrDonator == DONATOR) {
+        isNeedy = 2;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,8 +90,9 @@ class _UserHomeScreen extends State<UserHomeScreen> {
       appBar: AppBar(
         //leading: Icon(Icons.dashboard),
         title: Text("Dashboard"),
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.dashboard)),
       ),
-      drawer: getDrawer(context),
+      // drawer: getDrawer(context),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -97,7 +116,7 @@ class _UserHomeScreen extends State<UserHomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: drawerOptions
-                        .getRange(2, 4)
+                        .getRange(isNeedy, 4)
                         .map((item) => getOptionCard(context, item))
                         .toList(),
                   ),

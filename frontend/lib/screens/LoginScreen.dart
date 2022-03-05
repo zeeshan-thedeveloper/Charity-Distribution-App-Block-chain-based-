@@ -32,24 +32,28 @@ class _LoginScreen extends State<LoginScreen> {
                 isUserOrOrganization)
             .then((value) {
           // print('response code ${value.responseCode}');
-          // print(SUCCESSFULL_LOGIN);
+          // print(SUCCESSFULL_LOGIN);R
           if (value.responseCode == SUCCESSFULL_LOGIN) {
             LoginResponsePayloadOfUser loginResponsePayload =
                 LoginResponsePayloadOfUser(
-              blockchainAccountAddress:
-                  value.responsePayload["blockchainAccountAddress"],
-              email: value.responsePayload["email"],
-              firstName: value.responsePayload["firstName"],
-              lastName: value.responsePayload["lastName"],
-              userUid: value.responsePayload["userUid"],
-            );
+                    blockchainAccountAddress:
+                        value.responsePayload["blockchainAccountAddress"],
+                    email: value.responsePayload["email"],
+                    firstName: value.responsePayload["firstName"],
+                    lastName: value.responsePayload["lastName"],
+                    userUid: value.responsePayload["userUid"],
+                    accountCatagory: value.responsePayload["accountCatagory"]);
 
             SharedPreferencedHelper.save(
                 INDIVIDUAL_DETAILS, loginResponsePayload);
             SharedPreferencedHelper.save(
                 CURRENT_LOGIN_USER, isUserOrOrganization);
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => UserHomeScreen()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => UserHomeScreen(
+                        isNeedyOrDonator:
+                            value.responsePayload["accountCatagory"])));
           } else {
             showDialog(
                 context: context,

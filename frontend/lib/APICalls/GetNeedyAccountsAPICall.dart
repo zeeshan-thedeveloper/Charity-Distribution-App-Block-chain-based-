@@ -1,0 +1,17 @@
+import 'dart:convert';
+
+import 'package:frontend/Support/Constants.dart';
+import 'package:frontend/modals/RecievedResponse.dart';
+import 'package:http/http.dart' as http;
+// import 'package:json_serializable/json_serializable.dart';
+
+Future<RecievedResponse> getNeedyAccounts() async {
+  final response = await http.get(
+    Uri.parse('http://${IPADDRESS}:${PORT}/${GET_NEEDY_ACCOUNTS}'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+  );
+  //print(response.body);
+  return RecievedResponse.fromJson(jsonDecode(response.body));
+}

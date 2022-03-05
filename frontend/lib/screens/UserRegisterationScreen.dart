@@ -11,6 +11,7 @@ class UserRegistrationScreen extends StatefulWidget {
 class _UserRegistrationScreen extends State<UserRegistrationScreen> {
   IconData seeOrHidePassword = Icons.visibility_off;
   IconData seeOrHidePin = Icons.visibility_off;
+  String isDonatorOrNeedy = DONATOR;
   // controller
   TextEditingController emailControler = new TextEditingController();
   TextEditingController firstNameControler = new TextEditingController();
@@ -36,7 +37,8 @@ class _UserRegistrationScreen extends State<UserRegistrationScreen> {
               INDIVIDUAL,
               firstNameControler.text,
               lastNameControler.text,
-              null)
+              null,
+              isDonatorOrNeedy)
           .then((response) {
         if (response.responseCode == NEW_ACCOUNT_CREATION_EMAIL_SENT) {
           showDialog(
@@ -167,6 +169,30 @@ class _UserRegistrationScreen extends State<UserRegistrationScreen> {
                                           labelText: 'Pin',
                                         ))),
                               ],
+                            ),
+                            ListTile(
+                              title: Text(DONATOR),
+                              leading: Radio(
+                                value: DONATOR,
+                                groupValue: isDonatorOrNeedy,
+                                onChanged: (String? value) {
+                                  setState(() {
+                                    isDonatorOrNeedy = value!;
+                                  });
+                                },
+                              ),
+                            ),
+                            ListTile(
+                              title: Text(NEEDY),
+                              leading: Radio(
+                                value: NEEDY,
+                                groupValue: isDonatorOrNeedy,
+                                onChanged: (String? value) {
+                                  setState(() {
+                                    isDonatorOrNeedy = value!;
+                                  });
+                                },
+                              ),
                             ),
                             Padding(
                                 padding: EdgeInsets.only(top: 20),

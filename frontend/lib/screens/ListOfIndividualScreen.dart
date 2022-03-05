@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/APICalls/FetchedIndividuals.dart';
 import 'package:frontend/APICalls/FetechOrganizations.dart';
+import 'package:frontend/APICalls/GetNeedyAccountsAPICall.dart';
+import 'package:frontend/Support/Constants.dart';
 import 'package:frontend/modals/LoginResponsePayload.dart';
 import 'package:frontend/screens/DonateFundsScreen.dart';
 import 'package:frontend/screens/ListOfRecievedTransaction.dart';
@@ -21,12 +25,33 @@ class _ListOfIndividualsScreen extends State<ListOfIndividualsScreen> {
   }
 
   Future<void> loadOrganizations() async {
-    List<LoginResponsePayloadOfUser> _individualFetechedList =
-        await fetechIndividuals();
+    // List<LoginResponsePayloadOfUser> _individualFetechedList =
+    //     await fetechIndividuals();
 
-    setState(() {
-      print('in set state');
-      _individualList = _individualFetechedList;
+    List<LoginResponsePayloadOfUser> _individualsList = [];
+    getNeedyAccounts().then((response) {
+      if (response.responseCode == SUCCESSFULL_FETCHED_NEEDY_ACCOUNTS) {
+        print(response.responsePayload);
+        for (var item in response.responsePayload) {
+          LoginResponsePayloadOfUser _individual = LoginResponsePayloadOfUser(
+              blockchainAccountAddress: item["blockchainAccountAddress"],
+              email: item["email"],
+              firstName: item["firstName"],
+              lastName: item["lastName"],
+              userUid: item["userUid"],
+              accountCatagory: item['accountCatagory']);
+          _individualsList.add(_individual);
+        }
+        setState(() {
+          print('in set state');
+          _individualList = _individualsList;
+        });
+      } else {
+        showDialog(
+            context: context,
+            builder: (context) =>
+                gernalDialog(context, response.responseMessage, "Error"));
+      }
     });
   }
 
@@ -82,4 +107,18 @@ class _ListOfIndividualsScreen extends State<ListOfIndividualsScreen> {
                 child: CircularProgressIndicator(),
               ));
   }
+}
+
+AlertDialog gernalDialog(BuildContext context, String messgae, String title) {
+  return AlertDialog(
+    title: Text(title),
+    content: Text(messgae),
+    actions: [
+      FlatButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('OK')),
+    ],
+  );
 }

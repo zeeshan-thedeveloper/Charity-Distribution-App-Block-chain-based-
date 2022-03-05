@@ -1,20 +1,22 @@
 class LoginResponsePayloadOfUser {
   String blockchainAccountAddress;
 
-  String email, firstName, lastName, userUid;
+  String email, firstName, lastName, userUid, accountCatagory;
 
   LoginResponsePayloadOfUser(
       {this.blockchainAccountAddress = "",
       this.email = "",
       this.firstName = "",
       this.lastName = "",
-      this.userUid = ""});
+      this.userUid = "",
+      this.accountCatagory = ""});
 
   LoginResponsePayloadOfUser.fromJson(Map<String, dynamic> json)
       : blockchainAccountAddress = json['blockchainAccountAddress'],
         email = json['email'],
         firstName = json['firstName'],
         lastName = json['lastName'],
+        accountCatagory = json['accountCatagory'],
         userUid = json['userUid'];
 
   Map<String, dynamic> toJson() => {
@@ -22,7 +24,8 @@ class LoginResponsePayloadOfUser {
         'email': email,
         'firstName': firstName,
         'lastName': lastName,
-        'userUid': userUid
+        'userUid': userUid,
+        'accountCatagory': accountCatagory
       };
 }
 

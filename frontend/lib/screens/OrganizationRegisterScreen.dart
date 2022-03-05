@@ -44,7 +44,8 @@ class _OrganizationRegistrationScreen
               ORGANIZATION,
               "",
               "",
-              descriptionController.text)
+              descriptionController.text,
+              "")
           .then((response) {
         if (response.responseCode == SUCCESSFULL_LOGIN) {
         } else {

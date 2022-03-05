@@ -19,7 +19,8 @@ Future<RecievedResponse> createAccount(
     String accountType,
     String firstName,
     String lastName,
-    var description) async {
+    var description,
+    String accountCatagory) async {
   final response = await http.post(
     Uri.parse('http://${IPADDRESS}:${PORT}/${CREATE_ACCOUNT}'),
     headers: <String, String>{
@@ -39,7 +40,8 @@ Future<RecievedResponse> createAccount(
       'accountType': accountType,
       'firstName': firstName,
       'lastName': lastName,
-      'description': description
+      'description': description,
+      'accountCatagory':accountCatagory
     }),
   );
   if (response.statusCode == 200) {

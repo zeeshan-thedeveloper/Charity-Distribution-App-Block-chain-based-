@@ -16,12 +16,12 @@ Future<List<LoginResponsePayloadOfUser>> fetechIndividuals() async {
     maped.forEach((key, val) {
       print(val);
       LoginResponsePayloadOfUser _individual = LoginResponsePayloadOfUser(
-        blockchainAccountAddress: val["blockchainAccountAddress"],
-        email: val["email"],
-        firstName: val["firstName"],
-        lastName: val["lastName"],
-        userUid: val["userUid"],
-      );
+          blockchainAccountAddress: val["blockchainAccountAddress"],
+          email: val["email"],
+          firstName: val["firstName"],
+          lastName: val["lastName"],
+          userUid: val["userUid"],
+          accountCatagory: val['accountCatagory']);
       _individualsList.add(_individual);
     });
     return _individualsList;
