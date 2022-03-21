@@ -79,7 +79,7 @@ class _ViewBalanceScreen extends State<ViewBalanceScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Your Current balance is : ${_userAccountBalance} ",
+                "Your Current balance is : ${_userAccountBalance} ethers",
                 style: TextStyle(fontSize: 20),
               ),
             ],

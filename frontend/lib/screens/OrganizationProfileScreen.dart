@@ -72,6 +72,15 @@ class _OrganizationProfileScreen extends State<OrganizationProfileScreen> {
                     Expanded(child: Text(current_organization.email))
                   ],
                 ),
+                 SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Text("Address: "),
+                    Expanded(child: Text(current_organization.blockchainAccountAddress))
+                  ],
+                ),
                 SizedBox(
                   height: 20,
                 ),

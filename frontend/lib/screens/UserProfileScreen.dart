@@ -85,6 +85,16 @@ class _UserProfileScreen extends State<UserProfileSCreen> {
                     Expanded(child: Text(current_user.email, style: textStyle))
                   ],
                 ),
+                 SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Account address: ", style: textStyle),
+                    Expanded(child: Text(current_user.blockchainAccountAddress, style: textStyle))
+                  ],
+                ),
                 SizedBox(
                   height: 20,
                 ),
