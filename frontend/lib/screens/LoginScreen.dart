@@ -11,6 +11,7 @@ import 'package:frontend/screens/UserHomeScreen.dart';
 import 'package:frontend/Support/SharedPreferencedHelper.dart';
 import 'package:frontend/screens/UserRegisterationScreen.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:frontend/Support/globals.dart' as globals;
 
 class LoginScreen extends StatefulWidget {
   @override

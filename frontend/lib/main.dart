@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:frontend/screens/IPScreen.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:frontend/Support/globals.dart' as globals;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,7 +52,7 @@ class IPAddressModal extends Model {
 
   void setIpAddress(String ip) {
     _iPAddress = ip;
-    // Then notify all the listeners.
+    globals.IPADDRESS = _iPAddress;
     notifyListeners();
   }
 }
