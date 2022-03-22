@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/main.dart';
 import 'package:frontend/screens/LoginScreen.dart';
 import 'package:frontend/screens/RegistrationOptionsScreen.dart';
 import 'package:frontend/screens/SmartContractScreen.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class EntryScreen extends StatelessWidget {
   @override
@@ -16,6 +18,7 @@ class EntryScreen extends StatelessWidget {
               Image.asset(
                 'assets/charity-home-image.jfif',
                 fit: BoxFit.cover,
+                height: 400,
               ),
               Row(
                 children: [

@@ -3,12 +3,14 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:frontend/APICalls/LoginAPICall.dart';
 import 'package:frontend/Support/Constants.dart';
+import 'package:frontend/main.dart';
 import 'package:frontend/modals/LoginResponsePayload.dart';
 import 'package:frontend/modals/RecievedResponse.dart';
 import 'package:frontend/screens/OrganizationHomeScreen.dart';
 import 'package:frontend/screens/UserHomeScreen.dart';
 import 'package:frontend/Support/SharedPreferencedHelper.dart';
 import 'package:frontend/screens/UserRegisterationScreen.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
